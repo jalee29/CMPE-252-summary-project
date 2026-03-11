@@ -18,6 +18,7 @@ def load_document(path):
     pandas dataframe containing all parquet files in path
     """
 
+    #gets all files in directory and combines them into 1 dataframe  
     directory = Path(path)
     documents = [pd.read_parquet(file) for file in directory.glob('*.parquet')]
 
@@ -40,6 +41,8 @@ def clean_document(document):
    ------- 
     cleaned pandas dataframe
     """
+
+    #clean out latex @cites and @math and remove spacing
     document['abstract'] = document['abstract'].str.replace(' \n', '', regex=False)
     document['abstract'] = document['abstract'].str.replace(r'@\w+', '', regex=True)
     document['abstract'] = document['abstract'].str.replace(r'\s+', ' ', regex=True)
@@ -50,6 +53,7 @@ def clean_document(document):
     article_summary = document['article'].str.len().describe()
     abstract_summary = document['abstract'].str.len().describe()
 
+    #remove really long and short papers some are missing and others have many artifacts
     document = document[
         (document['article'].str.len() >= article_summary['25%']) &
         (document['article'].str.len() <= article_summary['75%']) &
