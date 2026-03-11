@@ -4,6 +4,20 @@ from pathlib import Path
 import pandas as pd
 
 def load_document(path):
+    """
+    loads a directory and combines all parquet files into a single dataframe
+
+    Parameters
+    ----------
+
+    path: 
+        path to directory containing parquet files
+        
+    Returns
+    ------- 
+    pandas dataframe containing all parquet files in path
+    """
+
     directory = Path(path)
     documents = [pd.read_parquet(file) for file in directory.glob('*.parquet')]
 
@@ -13,6 +27,19 @@ def load_document(path):
     return pd.concat(documents, ignore_index=True)
 
 def clean_document(document):
+    """
+    takes a document and cleans it up
+
+    Parameters
+    ----------
+
+    document:
+        pandas dataframe containing a single document
+
+   Returns
+   ------- 
+    cleaned pandas dataframe
+    """
     document['abstract'] = document['abstract'].str.replace(' \n', '', regex=False)
     document['abstract'] = document['abstract'].str.replace(r'@\w+', '', regex=True)
     document['abstract'] = document['abstract'].str.replace(r'\s+', ' ', regex=True)
@@ -35,7 +62,7 @@ def clean_document(document):
     return document
 
 if __name__ == "__main__":
-    with open("config.yaml", "r") as f:
+    with open("config\config.yaml", "r") as f:
         config = yaml.safe_load(f)
 
     directory_path = config['dataset']['train']

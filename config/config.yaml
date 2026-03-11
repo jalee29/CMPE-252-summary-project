@@ -1,0 +1,2 @@
+dataset:
+  train: "data/document/train"  # folder with all parquet files (includes 4)
