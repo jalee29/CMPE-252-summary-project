@@ -1,2 +1,23 @@
 dataset:
   train: "data/document/train"  # folder with all parquet files (includes 4)
+  validation: "data/document/validation"  
+  test: "data/document/test"
+
+train:
+  device: "cuda"
+  model_name: "facebook/bart-large-cnn"
+
+train_args:
+  output_dir: "./bart_finetuned"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  save_total_limit: 3
+  eval_strategy: "epoch"          
+  save_strategy: "epoch"               
+  logging_strategy: "steps"             
+  logging_steps: 100                   
+  bf16: True                           
+  predict_with_generate: True

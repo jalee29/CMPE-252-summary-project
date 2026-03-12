@@ -65,13 +65,21 @@ def clean_document(document):
     
     return document
 
+def load_and_clean(path):
+    """
+    Loads and clean dataset from path
+    """
+    
+    dataset = load_document(path)
+    dataset = clean_document(dataset)
+    return dataset
+
 if __name__ == "__main__":
     with open("config\config.yaml", "r") as f:
         config = yaml.safe_load(f)
 
     directory_path = config['dataset']['train']
 
-    dataset = load_document(directory_path)
-    dataset = clean_document(dataset)
+    dataset = load_and_clean(directory_path)
 
     print(f"Final dataset shape: {dataset.shape}")
