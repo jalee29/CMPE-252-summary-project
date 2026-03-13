@@ -6,6 +6,8 @@ dataset:
 train:
   device: "cuda"
   model_name: "facebook/bart-large-cnn"
+  article_length: 1024
+  abstract_length: 320
 
 train_args:
   output_dir: "./bart_finetuned"
@@ -23,5 +25,5 @@ train_args:
   predict_with_generate: True
 
 fine-tuned:
-  model_name: "bart_finetuned\checkpoint-11619"
+  model_name: "bart_finetuned/checkpoint-11619"
   device: "cuda"
