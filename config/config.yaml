@@ -21,3 +21,7 @@ train_args:
   logging_steps: 100                   
   bf16: True                           
   predict_with_generate: True
+
+fine-tuned:
+  model_name: "bart_finetuned\checkpoint-11619"
+  device: "cuda"

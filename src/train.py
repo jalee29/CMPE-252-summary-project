@@ -5,10 +5,32 @@ import torch
 
 from src.load_and_clean import load_and_clean
 
-def tokenize_document(dataset, model_name):
+def tokenize_document(dataset, model_name, article_length, abstract_length):
+    """
+    Tokenizes the dataset for training
+
+    Parameters
+    ----------
+    dataset: Dataset
+        The dataset to be tokenized
+    
+    model_name: str
+        The name of the model to be used for tokenization
+        
+    article_length: int
+        The maximum length of the article
+        
+    abstract_length: int
+        The maximum length of the abstract
+        
+    Returns
+    -------
+    model_input: dict
+        The tokenized dataset
+    """
     tokenizer = BartTokenizer.from_pretrained(model_name)
-    model_input = tokenizer(dataset["article"], max_length = 1024, truncation = True)
-    labels = tokenizer(dataset["abstract"], max_length = 320, truncation = True)
+    model_input = tokenizer(dataset["article"], max_length = article_length, truncation = True)
+    labels = tokenizer(dataset["abstract"], max_length = abstract_length, truncation = True)
 
     model_input["labels"] = labels['input_ids']
     return model_input
@@ -17,8 +39,28 @@ def tokenize_document(dataset, model_name):
 def train(train, validation, device, model_name, args):
     """
     Trains the model on the dataset
-    """
 
+    Parameters
+    ----------
+    train: str
+        The path to the training dataset
+    
+    validation: str
+        The path to the validation dataset      
+
+    device: str
+        The device to be used for training, prioritze "cuda" otherwise "cpu"
+        
+    model_name: str
+        The name of the model to be used for training
+        
+    args: dict
+        The arguments to be used for training
+        
+    Returns
+    -------
+    None
+    """
     train_dataset = Dataset(load_and_clean(train))
     validation_dataset = Dataset(load_and_clean(validation))
 
