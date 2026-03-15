@@ -1,0 +1,32 @@
+dataset:
+    data_dir: "data"
+    train: [
+        "https://huggingface.co/datasets/ccdv/arxiv-summarization/resolve/main/section/train-00000-of-00015.parquet",
+        "https://huggingface.co/datasets/ccdv/arxiv-summarization/resolve/main/section/train-00002-of-00015.parquet",
+        "https://huggingface.co/datasets/ccdv/arxiv-summarization/resolve/main/section/train-00004-of-00015.parquet"
+        ]
+    validation: [
+        "https://huggingface.co/datasets/ccdv/arxiv-summarization/resolve/main/section/train-00003-of-00015.parquet"
+        ]
+    test: "https://huggingface.co/datasets/ccdv/arxiv-summarization/resolve/main/section/test-00000-of-00001.parquet"
+
+train_args:
+    base_model_name: "facebook/bart-large-cnn"
+    output_dir: "outputs/fine_tune_40k"
+    train_batch_size: 4
+    eval_batch_size: 4
+    document_column: "article"
+    summary_column: "abstract"
+    num_workers: 4
+
+model:
+    model_name: "Veekee/cmpe-252-summary-project"
+
+cross_attentions_heatmap:
+    input_document: >
+        Bats (order Chiroptera) are winged mammals; the only mammals
+        capable of true and sustained flight. Bats are more agile in flight than most
+        birds, flying with their long spread-out digits covered with a thin membrane
+        or patagium.
+    summary_size: 20
+    plot_color_scheme: "plasma"
