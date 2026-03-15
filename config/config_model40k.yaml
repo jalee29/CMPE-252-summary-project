@@ -30,3 +30,4 @@ cross_attentions_heatmap:
         or patagium.
     summary_size: 20
     plot_color_scheme: "plasma"
+    results_dir: "results"
