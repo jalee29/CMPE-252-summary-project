@@ -12,7 +12,7 @@ dataset:
 
 train_args:
     base_model_name: "facebook/bart-large-cnn"
-    output_dir: "outputs/fine_tune_40k"
+    output_dir: "results/fine_tune_40k"
     train_batch_size: 4
     eval_batch_size: 4
     document_column: "article"
