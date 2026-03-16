@@ -28,7 +28,7 @@ def create_heatmap(attention_matrix, input_tokens, output_tokens, results_dir, p
     plt.xticks(rotation=90, fontsize=12)
     plt.yticks(rotation=0, fontsize=12)
     plt.tight_layout()
-    plt.savefig(results_dir/"cross_attentions_heatmap.png", dpi=300, bbox_inches='tight')
+    plt.savefig(str(results_dir/"cross_attentions_heatmap.png"), dpi=300, bbox_inches='tight')
     plt.show()
 
 
