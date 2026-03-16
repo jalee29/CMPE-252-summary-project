@@ -1,2 +1,3 @@
 ### Files:
-- Work in progress
+- **cross_attention_heatmap.py**: When run, this file creates a token-level heatmap of cross attentions for the BART fine-tuned '[Veekee/cmpe-252-summary-project](https://huggingface.co/Veekee/cmpe-252-summary-project)' model.
+- **train_model40k.py**: When run, this file recreates the BART fine-tuned '[Veekee/cmpe-252-summary-project](https://huggingface.co/Veekee/cmpe-252-summary-project)' model trained on 40k train data and 13k validation data. To run this file you need to download the [run_summarization.py](https://github.com/huggingface/transformers/tree/main/examples/pytorch/summarization) script provided by Hugging Face.
