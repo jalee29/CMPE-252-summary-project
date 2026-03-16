@@ -1,0 +1,3 @@
+### Data
+---
+This directory is for storing data created by the pre-processing scripts. The data is used for model training.
