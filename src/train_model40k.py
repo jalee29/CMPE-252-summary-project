@@ -52,8 +52,10 @@ def main():
     for url in config["dataset"]["validation"]:
         val_data.append(pd.read_parquet(url))
 
+    print("Making training file...")
     create_train_csv(train_data, data_directory)
 
+    print("Making validation file...")
     create_val_csv(val_data, data_directory)
 
     try:
